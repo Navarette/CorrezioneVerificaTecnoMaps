@@ -25,9 +25,12 @@ app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb+srv://navarettearnold:rIGXbQeVTx923EBu@cluster0.0gmimrb.mongodb.net/pokemon"
 mongo = PyMongo(app)
 CORS(app)
-pokemon = mongo.db.b  # crea una variabile collegata al mongo db tane
+pokemon = mongo.db.b  # crea una variabile collegata al mongo db b
 output = []
+# itera i risultati della query al database.pokemon.find() esegue una query per ottenere tutti i documenti dal database "b".
 for s in pokemon.find():
+    # Per ogni documento trovato nella query, viene creato un nuovo dizionario con le chiavi "lat" e "lng" che corrispondono ai valori delle chiavi "lat" e "lng" nel documento. 
+    # Questo dizionario viene quindi aggiunto alla lista output.
     output.append({"lat": s['lat'], "lng": s['lng']})
 
 @app.route("/all")
