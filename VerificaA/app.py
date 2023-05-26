@@ -37,22 +37,22 @@ def all():
 
 @app.route("/raffaello")
 def raffaello():
-    return (output[random.randrange(0, 14)])
+    return (output[random.randrange(0, len(output))])
 
 
 @app.route("/donatello")
 def donatello():
-    return (output[random.randrange(0, 14)])
+    return (output[random.randrange(0, len(output))])
 
 
 @app.route("/michelangelo")
 def michelangelo():
-    return (output[random.randrange(0, 14)])
+    return (output[random.randrange(0, len(output))])
 
 
 @app.route("/leonardo")
 def leonardo():
-    return (output[random.randrange(0, 14)])
+    return (output[random.randrange(0, len(output))])
 
 
 if __name__ == "__main__":
