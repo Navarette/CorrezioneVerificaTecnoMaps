@@ -30,6 +30,9 @@ output = []
 for s in pokemon.find():
     output.append({"lat": s['lat'], "lng": s['lng']})
 
+@app.route("/all")
+def all():
+    return (output)
 
 @app.route("/pikachu")
 def pikachu():
@@ -41,8 +44,8 @@ def charmender():
     return (output[random.randrange(0, len(output))])
 
 
-@app.route("/bulbasaur")
-def bulbasaur():
+@app.route("/bullbasaur")
+def bullbasaur():
     return (output[random.randrange(0, len(output))])
 
 
