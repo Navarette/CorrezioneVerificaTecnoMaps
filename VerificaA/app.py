@@ -4,26 +4,56 @@ from flask import jsonify
 from flask import request
 from flask_pymongo import PyMongo
 from flask_cors import CORS
+import random
 
 import geojson
 import shapely.wkt
 
-app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb+srv://navarettearnold:D3GP0u4i9FW1a7B1@cluster0.0gmimrb.mongodb.net/tane" #Importante qui va specificato il nome del DB
+# pip install Flask-PyMongo
+# pip install Flask
+# pip install dnspython
+# npm install -g --force nodemon
+# pip install flask-cors
+# pip install geojson
+# pip install shapely
+# pip install jsonify
+# npm i -g nodemon
 
+app = Flask(__name__)
+# Importante qui va specificato il nome del DB
+app.config["MONGO_URI"] = "mongodb+srv://navarettearnold:rIGXbQeVTx923EBu@cluster0.0gmimrb.mongodb.net/tartarughe"
 mongo = PyMongo(app)
 CORS(app)
-
-# Annotation that allows the function to be hit at the specific URL.
+tane = mongo.db.tane  # crea una variabile collegata al mongo db tane
+output = []
+for s in tane.find():
+    output.append({"lat": s['lat'], "lng": s['lng']})
 
 
 @app.route("/all")
 def all():
-    tane = mongo.db.tane
-    output = []
-    for s in tane.find():
-        output.append({"lat":s['lat'],"lng":s['lng']})
-    return jsonfy(output)
+    return (output)
+
+
+@app.route("/raffaello")
+def raffaello():
+    return (output[random.randrange(0, 14)])
+
+
+@app.route("/donatello")
+def donatello():
+    return (output[random.randrange(0, 14)])
+
+
+@app.route("/michelangelo")
+def michelangelo():
+    return (output[random.randrange(0, 14)])
+
+
+@app.route("/leonardo")
+def leonardo():
+    return (output[random.randrange(0, 14)])
+
 
 if __name__ == "__main__":
     # Runs the Flask application only if the main.py file is being run.
